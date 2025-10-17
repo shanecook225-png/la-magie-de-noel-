@@ -1,0 +1,296 @@
+/* 🎄 La Magie de Noël by Yohan 🎅🏾 */
+
+/* ----- Reset ----- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ----- Police festive ----- */
+body {
+  font-family: 'Mountains of Christmas', cursive;
+  background: linear-gradient(to bottom, white 45%, #006400 55%);
+  color: #000;
+  text-align: center;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ----- Décorations de Noël ----- */
+.decor {
+  position: absolute;
+  z-index: 1;
+  width: 80px;
+  opacity: 0.9;
+}
+
+.decor.sleigh {
+  top: 10%;
+  left: 5%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.decor.giftbag {
+  bottom: 10%;
+  right: 8%;
+  animation: bounce 4s ease-in-out infinite;
+}
+
+.decor.toy {
+  top: 25%;
+  right: 10%;
+  animation: swing 5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes swing {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(10deg); }
+}
+
+/* ----- Neige animée ----- */
+.snowflakes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.snowflakes span {
+  position: absolute;
+  top: -10px;
+  color: white;
+  font-size: 1em;
+  opacity: 0.8;
+  animation: fall linear infinite;
+}
+
+/* Animation chute */
+@keyframes fall {
+  0% { transform: translateY(-10vh); opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+
+/* ----- Container ----- */
+.container {
+  position: relative;
+  z-index: 3;
+  padding: 2rem;
+}
+
+/* ----- Titre ----- */
+.title {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: #b22222;
+  text-shadow: 0 0 15px rgba(178, 34, 34, 0.7);
+}
+
+/* ----- Intro ----- */
+.intro {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* ----- Bouton musique ----- */
+#musicToggle {
+  font-family: 'Segoe UI', sans-serif;
+  background: #006400;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#musicToggle:hover {
+  background: gold;
+  color: black;
+}
+
+/* ----- Boîte cadeau 🎁 ----- */
+.gift-box {
+  position: relative;
+  margin: 3rem auto;
+  width: 120px;
+  height: 120px;
+  perspective: 600px;
+  cursor: pointer;
+}
+
+.gift-box .box {
+  width: 100%;
+  height: 100%;
+  background: rgb(255, 88, 88);
+  border: 4px solid rgb(255, 232, 103);
+  border-radius: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.gift-box .lid {
+  width: 100%;
+  height: 40px;
+  background: red;
+  border: 4px solid gold;
+  border-radius: 10px 10px 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: bottom;
+  transition: transform 0.6s ease;
+  z-index: 2;
+}
+
+.gift-box.open .lid {
+  transform: rotateX(-120deg);
+}
+
+/* ----- Message box ----- */
+.message-box {
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid #006400;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  animation: fadeIn 1s ease-in-out;
+  color: #000;
+}
+
+.message-box p {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+#shareButton {
+  font-family: 'Segoe UI', sans-serif;
+  background: gold;
+  color: black;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#shareButton:hover {
+  background: white;
+  color: red;
+}
+
+/* ----- Footer ----- */
+footer {
+  margin-top: 3rem;
+  font-size: 1rem;
+  color: #006400;
+  font-weight: bold;
+}
+
+/* ----- Animations générales ----- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+.decor {
+  position: absolute;
+  z-index: 1;
+  width: 80px;
+  opacity: 0.9;
+  transition: transform 2s ease-in-out;
+}
+
+/* Traîneau qui flotte à gauche */
+.decor.sleigh {
+  top: 10%;
+  left: 5%;
+  animation: float 6s ease-in-out infinite alternate;
+}
+
+/* Sac cadeau qui rebondit en bas */
+.decor.giftbag {
+  bottom: 10%;
+  right: 8%;
+  animation: bounce 4s ease-in-out infinite alternate;
+}
+
+/* Sucre d’orge qui tourne */
+.decor.candy {
+  top: 20%;
+  left: 60%;
+  animation: swing 5s ease-in-out infinite alternate;
+}
+
+/* Jouet qui balance doucement */
+.decor.toy {
+  top: 30%;
+  right: 15%;
+  animation: swing 4s ease-in-out infinite alternate-reverse;
+}
+/* Traîneau qui traverse le ciel */
+.sleigh-fly {
+  position: absolute;
+  top: 15%;
+  left: -100px;
+  width: 120px;
+  z-index: 2;
+  animation: fly 15s linear infinite;
+}
+
+@keyframes fly {
+  0% { left: -150px; transform: rotate(0deg); }
+  50% { transform: rotate(5deg); }
+  100% { left: 110vw; transform: rotate(-5deg); }
+}
+
+/* Lumières scintillantes autour des décorations */
+.decor::after {
+  content: "✨";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  font-size: 1.2rem;
+  opacity: 0.8;
+  animation: twinkle 1.5s infinite alternate;
+}
+
+/* Fumée magique autour de la boîte cadeau */
+.smoke {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
+  animation: rise 3s ease-in-out infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+@keyframes rise {
+  0% { transform: translateX(-50%) translateY(0) scale(0.5); opacity: 0.5; }
+  50% { transform: translateX(-50%) translateY(-30px) scale(1); opacity: 0.8; }
+  100% { transform: translateX(-50%) translateY(-60px) scale(1.2); opacity: 0; }
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Magie de Noël by Yohan 🎅🏾</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0; padding:0;
+  font-family:'Mountains of Christmas', cursive;
+  text-align:center;
+  color:#fff;
+  min-height:100vh;
+  overflow:hidden;
+  background: linear-gradient(to bottom, #e0f7fa 0%, #006400 100%);
+}
+
+/* Sapin bas gauche */
+.tree {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 150px;
+  z-index: 1;
+}
+
+/* Flocons de neige */
+.snowflakes span {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 1.2rem;
+  animation: fall linear forwards;
+}
+@keyframes fall { to { transform: translateY(100vh); opacity: 0; } }
+
+/* Étoiles scintillantes */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 3s infinite alternate;
+}
+@keyframes twinkle { 0% { opacity:0.2; } 100% { opacity:1; } }
+
+/* Conteneur principal */
+.container { padding: 2rem; z-index: 3; position: relative; }
+.title { font-size: 2.8rem; margin-bottom: 1rem; color: #ffd700; text-shadow: 0 0 15px rgba(255,215,0,0.7); }
+.intro { font-family: 'Great Vibes', cursive; font-size: 1.5rem; margin-bottom: 2rem; }
+
+/* Musique */
+#musicToggle { padding: 10px 20px; background: #b22222; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 1.2rem; margin-bottom: 2rem; transition: 0.3s; }
+#musicToggle:hover { background: #ff4444; }
+
+/* Boîte cadeau magique */
+.gift-box {
+  width: 140px;
+  height: 140px;
+  margin: 2rem auto;
+  position: relative;
+  cursor: pointer;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #ff0000, #b22222);
+  box-shadow: 0 0 20px rgba(255,215,0,0.6);
+  transition: all 0.4s ease;
+}
+.gift-box:hover { transform: scale(1.05); }
+
+.lid {
+  width: 140px;
+  height: 40px;
+  background: linear-gradient(145deg, #b22222, #ff4500);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 15px 15px 0 0;
+  transition: transform 0.6s ease, box-shadow 0.3s ease;
+  transform-origin: left center;
+  box-shadow: inset 0 -5px 10px rgba(0,0,0,0.3);
+}
+.gift-box.open .lid {
+  transform: rotate(-120deg);
+  animation: giftGlow 0.6s forwards;
+}
+@keyframes giftGlow {
+  0% { box-shadow: 0 0 30px rgba(255,215,0,0.7); }
+  100% { box-shadow: 0 0 50px rgba(255,215,0,1), 0 0 70px rgba(255,69,0,0.8); }
+}
+
+.box {
+  width: 140px;
+  height: 100px;
+  background: linear-gradient(145deg, #ff6347, #ff0000);
+  position: absolute;
+  top: 40px;
+  left: 0;
+  border-radius: 0 0 15px 15px;
+  box-shadow: inset 0 -5px 15px rgba(0,0,0,0.3);
+}
+
+/* Mini-flocons et étoiles autour de la boîte */
+.mini { position:absolute; font-size:1rem; animation: riseMini 1.5s ease-out forwards; }
+@keyframes riseMini { 0% { transform: translateY(0) scale(0.5); opacity:1; } 100% { transform: translateY(-120px) scale(1); opacity:0; } }
+
+/* Message et partage */
+.message-box { margin-top:1.5rem; padding:1rem; border:2px dashed #ffd700; border-radius:15px; background:rgba(0,0,0,0.3); display:none; color:#fff; }
+#messageText { font-size:1.3rem; margin-bottom:1rem; }
+#shareButton, #shareFriend {
+  padding:10px 15px; 
+  background:#228b22; 
+  color:white; 
+  border:none; 
+  border-radius:10px; 
+  cursor:pointer; 
+  font-size:1rem; 
+  margin-right:10px;
+}
+#shareButton:hover, #shareFriend:hover { background:#32cd32; }
+
+footer { margin-top:2rem; font-family:'Great Vibes', cursive; font-size:1.2rem; color:#ffd700; }
+</style>
+</head>
+<body>
+
+<audio id="music" src="jingle-bells-348411.mp3" loop></audio>
+<audio id="popSound" src="pop.mp3"></audio>
+<img src="tree.png" alt="Sapin de Noël" class="tree" id="tree">
+
+<div class="snowflakes" aria-hidden="true"></div>
+
+<section class="container">
+<h1 class="title">🎄 La Magie de Noël by Yohan 🎄</h1>
+<p class="intro">Bienvenue dans la Magie de Noël 🎅🏾 <br>Chaque clic cache un sourire à offrir ✨</p>
+
+<button id="musicToggle">🔊 Activer la musique</button>
+
+<div class="gift-box" id="giftBox">
+  <div class="lid"></div>
+  <div class="box"></div>
+</div>
+
+<div class="message-box" id="messageBox">
+  <p id="messageText"></p>
+  <button id="shareButton">Partager la magie 💌</button>
+  <button id="shareFriend">Partager à un ami 👥</button>
+</div>
+
+<footer><p>Avec amour — <strong>Yohan 🎅🏾🧡</strong></p></footer>
+</section>
+
+<script>
+// Musique
+const music = document.getElementById("music");
+const musicToggle = document.getElementById("musicToggle");
+let isPlaying = false;
+musicToggle.addEventListener("click", async () => {
+  try{
+    if(isPlaying){ music.pause(); musicToggle.textContent="🔊 Activer la musique"; }
+    else{ await music.play(); musicToggle.textContent="🔇 Couper la musique"; }
+    isPlaying=!isPlaying;
+  }catch(e){ alert("Erreur musique: "+e.message); }
+});
+
+// Flocons
+const snowContainer = document.querySelector(".snowflakes");
+function createSnowflake(){
+  const snowflake = document.createElement("span");
+  snowflake.textContent="❄";
+  snowflake.style.left = Math.random()*100+"vw";
+  snowflake.style.fontSize = Math.random()*10+10+"px";
+  snowflake.style.animationDuration = Math.random()*5+5+"s";
+  snowflake.style.opacity = Math.random();
+  snowContainer.appendChild(snowflake);
+  setTimeout(()=>snowflake.remove(),10000);
+}
+setInterval(createSnowflake,200);
+
+// Étoiles
+for(let i=0;i<50;i++){
+  const star=document.createElement("div");
+  star.className="star";
+  star.style.top=Math.random()*100+"vh";
+  star.style.left=Math.random()*100+"vw";
+  star.style.width=star.style.height=Math.random()*3+1+"px";
+  star.style.animationDuration=Math.random()*3+2+"s";
+  document.body.appendChild(star);
+}
+
+// Boîte cadeau
+const giftBox = document.getElementById("giftBox");
+const messageBox = document.getElementById("messageBox");
+const messageText = document.getElementById("messageText");
+const popSound = document.getElementById("popSound");
+const messages = [
+  "🎄 Joyeux Noël ! Que la magie remplisse ton cœur 🎅🏾✨",
+  "❄️ Un sourire, un câlin, et beaucoup d’amour pour toi 💖",
+  "🎁 Que chaque jour soit un cadeau à ouvrir 🌟",
+  "✨ La magie de Noël, c’est de partager la joie 🎶",
+  "🦌 Que ton chemin soit illuminé comme un sapin 🎄💡"
+];
+
+giftBox.addEventListener("click", ()=>{
+  giftBox.classList.toggle("open");
+  popSound.currentTime=0; popSound.play();
+  setTimeout(()=>{
+    const randomMsg = messages[Math.floor(Math.random()*messages.length)];
+    messageText.textContent=randomMsg;
+    messageBox.style.display="block";
+
+    // mini-flocons/étoiles
+    for(let i=0;i<10;i++){
+      const mini=document.createElement("div");
+      mini.className="mini";
+      mini.style.color=`hsl(${Math.random()*360},100%,70%)`;
+      mini.style.left=60+Math.random()*40+"px";
+      mini.style.top="-10px";
+      mini.textContent=["❄","✨","🎁"][Math.floor(Math.random()*3)];
+      giftBox.appendChild(mini);
+      setTimeout(()=>mini.remove(),1500);
+    }
+  },600);
+});
+
+// Partage
+const shareButton = document.getElementById("shareButton");
+const shareFriend = document.getElementById("shareFriend");
+
+function shareMessage(msg){
+  if(navigator.share){
+    navigator.share({ title:"La Magie de Noël 🎄", text: msg, url: window.location.href });
+  } else { 
+    prompt("Copiez ce message pour partager :", msg+" "+window.location.href);
+  }
+}
+
+shareButton.addEventListener("click", ()=>{
+  shareMessage("🎄 Viens découvrir la magie de Noël by Yohan 🎅🏾✨");
+});
+
+shareFriend.addEventListener("click", ()=>{
+  shareMessage("🎄 Hey ! Je t’invite à découvrir la Magie de Noël by Yohan 🎅🏾✨");
+});
+</script>
+
+</body>
+</html>
